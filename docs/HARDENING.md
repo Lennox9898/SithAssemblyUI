@@ -11,7 +11,7 @@ Stand: 23.09.2026. Umfang: öffentliche statische Website, lokale Vorschau, Buil
 | Deploy-Helfer | Shell-Ersetzung von Deploy-ID und URL; Dateinamen mit Leerzeichen wurden beim Ersetzen der URL falsch getrennt. | Validierte IDs, Übergabe über Umgebungsvariablen und direkte Zeichenketten-Ersetzung in Textdateien. Binäre Assets bleiben unverändert. |
 | Login-Entwurf | Eingaben konnten beim Weg- und Zurücknavigieren im Browser stehen bleiben. | Felder bei Navigation, Wiederherstellung und Absenden leeren; Passwort wieder verbergen. |
 
-Die Vorschau ist weiterhin ausschließlich an `127.0.0.1` gebunden. Die Dateifehler setzten entsprechende lokale Inhalte oder Verknüpfungen voraus; sie sind kein Nachweis eines bereits erfolgten Angriffs auf die öffentliche Domain. Der Deploy-Einstieg ist auf berechtigte Repository-Akteure und IONOS beschränkt. Die Entfernung der Shell-Auswertung ist vorbeugende Härtung, kein Nachweis einer anonym ausnutzbaren Befehlsausführung.
+Die Vorschau ist weiterhin ausschließlich an die lokale IPv4-Loopback-Schnittstelle gebunden und über `localhost` erreichbar. Die Dateifehler setzten entsprechende lokale Inhalte oder Verknüpfungen voraus; sie sind kein Nachweis eines bereits erfolgten Angriffs auf die öffentliche Domain. Der Deploy-Einstieg ist auf berechtigte Repository-Akteure und IONOS beschränkt. Die Entfernung der Shell-Auswertung ist vorbeugende Härtung, kein Nachweis einer anonym ausnutzbaren Befehlsausführung.
 
 ## Zusätzliche Schutzmaßnahmen
 

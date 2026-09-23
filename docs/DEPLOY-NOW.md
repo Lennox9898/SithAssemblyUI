@@ -4,17 +4,18 @@ Das bestehende **IONOS Deploy Now Starter-Projekt** ist bereits mit diesem Repos
 
 ## 1. Inhalt lokal fertigstellen
 
+Im Hauptverzeichnis der lokalen Repository-Kopie ausführen:
+
 ```powershell
-Set-Location 'E:\SithASM Web'
 npm run check
 npm run preview
 ```
 
-`http://127.0.0.1:4173` öffnen. Änderungen in `site/` vornehmen. Die aktuelle Startseite kann als Grundlage dienen; dein eigentlicher Projektinhalt fehlt noch.
+`http://localhost:4173` öffnen. Änderungen in `site/` vornehmen. Die aktuelle Startseite kann als Grundlage dienen; dein eigentlicher Projektinhalt fehlt noch.
 
 ## 2. Vorhandenes GitHub-Repository verwenden
 
-Das Repository ist [Lennox9898/SithAssemblyUI](https://github.com/Lennox9898/SithAssemblyUI), der Branch ist `main`. Der lokale Web-Ordner ist mit diesem Repository als `origin` verbunden. Kein weiteres Repository und keinen zweiten Remote anlegen.
+Das Repository heißt **SithAssemblyUI**, der Branch ist `main`. Der lokale Web-Ordner ist mit diesem Repository als `origin` verbunden. Kein weiteres Repository und keinen zweiten Remote anlegen.
 
 Für spätere Änderungen:
 
@@ -30,7 +31,7 @@ git push
 
 ## 3. Deploy Now einrichten
 
-Im [Deploy-Now-Dashboard](https://ionos.space/) ein Projekt aus dem GitHub-Repository **Lennox9898/SithAssemblyUI** verbinden. Die IONOS-GitHub-App für dieses Repository freigeben. Statisches Starter-Projekt und Branch `main` wählen.
+Im [Deploy-Now-Dashboard](https://ionos.space/) ein Projekt aus dem GitHub-Repository **SithAssemblyUI** verbinden. Die IONOS-GitHub-App für dieses Repository freigeben. Statisches Starter-Projekt und Branch `main` wählen.
 
 Die Werte im Assistenten prüfen bzw. eintragen:
 

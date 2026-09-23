@@ -6,8 +6,9 @@ Ein reiner Domain-Vertrag enthält nicht automatisch Webspace. Ein passender Web
 
 ## 1. Upload-Paket erstellen
 
+Im Hauptverzeichnis der lokalen Repository-Kopie ausführen:
+
 ```powershell
-Set-Location 'E:\SithASM Web'
 npm run package
 ```
 

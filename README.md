@@ -2,18 +2,19 @@
 
 Vorbereitete Website für **sith-assembly.com**: zuerst IONOS Deploy Now / Starter, später normales Linux-Webhosting. Ein Root-Server ist noch nicht eingerichtet.
 
-Quellcode: [Lennox9898/SithAssemblyUI](https://github.com/Lennox9898/SithAssemblyUI), Branch `main`.
+Quellcode: dieses Repository (**SithAssemblyUI**), Branch `main`.
 
 ## Schnellstart unter Windows
 
 Voraussetzung: Node.js 22 oder neuer. Die Website hat keine npm-Abhängigkeiten und benötigt auf dem Hosting keinen laufenden Node-Server.
 
+Ein Terminal im Hauptverzeichnis der lokalen Repository-Kopie öffnen und ausführen:
+
 ```powershell
-Set-Location 'E:\SithASM Web'
 npm run dev
 ```
 
-Dann **localhost** öffnen. Alternativ `START-VORSCHAU.cmd` doppelklicken. Nach Änderungen den Browser neu laden; `Strg+C` beendet die lokale Vorschau.
+Dann **http://localhost:4173** öffnen. Alternativ `START-VORSCHAU.cmd` doppelklicken. Nach Änderungen den Browser neu laden; `Strg+C` beendet die lokale Vorschau.
 
 ```powershell
 npm run check     # Baut die Website und prüft Dateien, Links, Anker und HTTP-Verhalten
