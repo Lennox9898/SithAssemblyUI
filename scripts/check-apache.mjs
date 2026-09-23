@@ -51,7 +51,9 @@ try {
   for (const method of ['POST', 'PUT', 'DELETE', 'OPTIONS']) {
     const response = await fetch(origin, { method });
     assert.equal(response.status, 405, method);
-    assert.equal(response.headers.get('allow'), 'GET, HEAD');
+    // Apache can append an empty list member to Allow on generated 405 errors.
+    // Compare the actual permitted methods, not comma/whitespace serialization.
+    assert.deepEqual(response.headers.get('allow').split(',').map(value => value.trim()).filter(Boolean), ['GET', 'HEAD']);
     await response.arrayBuffer();
     checks++;
   }
