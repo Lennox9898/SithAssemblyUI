@@ -13,7 +13,7 @@ Set-Location 'E:\SithASM Web'
 npm run dev
 ```
 
-Dann **http://127.0.0.1:4173** öffnen. Alternativ `START-VORSCHAU.cmd` doppelklicken. Nach Änderungen den Browser neu laden; `Strg+C` beendet die lokale Vorschau.
+Dann **localhost** öffnen. Alternativ `START-VORSCHAU.cmd` doppelklicken. Nach Änderungen den Browser neu laden; `Strg+C` beendet die lokale Vorschau.
 
 ```powershell
 npm run check     # Baut die Website und prüft Dateien, Links, Anker und HTTP-Verhalten
