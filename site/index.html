@@ -13,6 +13,7 @@
     <link rel="canonical" href="https://sith-assembly.com/">
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="stylesheet" href="/assets/style.css">
+    <script src="/assets/terminal.js" defer></script>
     <title>Sith Assembly — Die nächste Phase beginnt.</title>
   </head>
   <body>
@@ -39,18 +40,40 @@
             <a class="button" href="#projekt">Das Projekt entdecken <span aria-hidden="true">↗</span></a>
             <p class="hero-note">Im Aufbau. Mit Raum für das, was kommt.</p>
           </div>
-          <div class="hero-art" aria-hidden="true">
-            <div class="orbital orbital-outer"></div>
-            <div class="orbital orbital-inner"></div>
-            <div class="art-axis"></div>
-            <svg class="assembly-mark" viewBox="0 0 320 360" fill="none">
-              <path d="M160 25 289 267H31L160 25Z" stroke="currentColor" stroke-width="2"/>
-              <path d="M160 74 260 259H205L160 173 113 259H61L160 74Z" fill="currentColor"/>
-              <path d="M88 283H232L254 321H66L88 283Z" fill="currentColor"/>
-              <path d="M160 8V348M18 267H302" stroke="currentColor" stroke-opacity=".3"/>
-            </svg>
-            <span class="art-coordinate">SA — 001</span>
-            <span class="art-caption">ASSEMBLY IN PROGRESS</span>
+          <div class="hero-terminal" aria-label="Idle-Numerical-Terminal" role="img">
+            <div class="terminal-window">
+              <div class="terminal-topline">
+                <span>SITHASM://IDLE-NUMERICS</span>
+                <span data-terminal-clock>00:00:00</span>
+              </div>
+              <div class="terminal-grid">
+                <div class="terminal-panel terminal-panel-wide">
+                  <span class="terminal-label">FFT STREAM</span>
+                  <div class="terminal-bars" data-terminal-bars>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="terminal-panel">
+                  <span class="terminal-label">EIG</span>
+                  <strong data-terminal-value="eigen">0.000</strong>
+                </div>
+                <div class="terminal-panel">
+                  <span class="terminal-label">TRAPZ</span>
+                  <strong data-terminal-value="trapz">0.000</strong>
+                </div>
+                <div class="terminal-panel terminal-panel-wide">
+                  <span class="terminal-label">MATRIX RESIDUAL</span>
+                  <pre data-terminal-matrix>00 00 00
+00 00 00
+00 00 00</pre>
+                </div>
+              </div>
+              <div class="terminal-footer">
+                <span data-terminal-status>NO INPUT / PASSIVE SAMPLE</span>
+                <span>SA-001</span>
+              </div>
+            </div>
           </div>
         </section>
 

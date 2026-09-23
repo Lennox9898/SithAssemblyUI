@@ -38,14 +38,20 @@ h1 em { font-style: normal; color: var(--accent); }
 .button:hover { background: var(--accent); }
 .button span { font-size: 20px; line-height: 1; }
 .hero-note { color: var(--muted); font-size: 11px; margin: 20px 0 0; }
-.hero-art { position: relative; height: 440px; display: grid; place-items: center; color: var(--accent); background: radial-gradient(ellipse, #ff40281c 0%, transparent 63%); }
-.orbital { position: absolute; border: 1px solid #ff624f25; border-radius: 50%; aspect-ratio: 1; }
-.orbital-outer { width: 95%; max-width: 440px; }
-.orbital-inner { width: 73%; max-width: 340px; border-style: dashed; border-color: #ff624f30; }
-.art-axis { position: absolute; top: 50%; width: 100%; height: 1px; background: #ff624f18; transform: rotate(-32deg); }
-.assembly-mark { position: relative; width: 67%; max-width: 310px; filter: drop-shadow(0 0 24px #ff624f20); }
-.art-coordinate { position: absolute; top: 5px; right: 0; color: var(--muted); }
-.art-caption { position: absolute; bottom: 0; right: 0; color: var(--muted); font-size: 9px; }
+.hero-terminal { position: relative; min-height: 440px; display: grid; place-items: center; }
+.hero-terminal::before { content: ""; position: absolute; inset: 4% -4%; background: radial-gradient(ellipse, #ff40281c 0%, transparent 68%); pointer-events: none; }
+.terminal-window { position: relative; width: min(100%, 430px); border: 1px solid #ff624f42; background: linear-gradient(145deg, #151516 0%, #0c0c0d 100%); box-shadow: 0 0 0 1px #ffffff08 inset, 0 28px 90px #00000055, 0 0 44px #ff624f16; overflow: hidden; }
+.terminal-window::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(180deg, #ffffff05 0 1px, transparent 1px 7px); opacity: .18; pointer-events: none; }
+.terminal-topline, .terminal-footer { position: relative; display: flex; justify-content: space-between; gap: 18px; padding: 14px 16px; color: var(--muted); font-family: "Cascadia Mono", Consolas, monospace; font-size: 10px; letter-spacing: .08em; border-bottom: 1px solid #303034; }
+.terminal-footer { border-top: 1px solid #303034; border-bottom: 0; color: #ffb0a6; }
+.terminal-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
+.terminal-panel { min-height: 92px; padding: 13px; border: 1px solid #303034; background: #ffffff05; }
+.terminal-panel-wide { grid-column: 1 / -1; }
+.terminal-label { display: block; margin-bottom: 13px; color: var(--muted); font-family: "Cascadia Mono", Consolas, monospace; font-size: 10px; letter-spacing: .11em; }
+.terminal-panel strong { display: block; color: var(--accent); font-family: "Cascadia Mono", Consolas, monospace; font-size: clamp(24px, 3.2vw, 34px); font-weight: 500; letter-spacing: .02em; text-shadow: 0 0 18px #ff624f33; }
+.terminal-panel pre { margin: 0; color: var(--accent); font-family: "Cascadia Mono", Consolas, monospace; font-size: 20px; line-height: 1.45; letter-spacing: .16em; }
+.terminal-bars { height: 108px; display: grid; grid-template-columns: repeat(16, 1fr); align-items: end; gap: 5px; }
+.terminal-bars span { display: block; height: var(--bar-height, 38%); min-height: 8px; background: linear-gradient(180deg, #f0eee9 0%, #ff624f 65%, #7c2b24 100%); box-shadow: 0 0 14px #ff624f2e; transition: height .35s ease; }
 .project-section { padding: 36px 0 59px; border-top: 1px solid var(--line); }
 .section-label { display: flex; align-items: center; gap: 25px; color: var(--accent); }
 .section-line { width: 45px; height: 1px; background: var(--line); }
@@ -68,7 +74,8 @@ h2 { margin: 0; font-size: 33px; font-weight: 500; letter-spacing: -.04em; line-
 @media (max-width: 850px) {
   .page-shell { width: calc(100% - 48px); }
   .hero { padding-top: 68px; padding-bottom: 68px; grid-template-columns: 1.4fr 1fr; }
-  .hero-art { height: 330px; }
+  .hero-terminal { min-height: 330px; }
+  .terminal-window { width: min(100%, 360px); }
   h1 { font-size: 58px; }
   .project-grid { gap: 32px; }
 }
@@ -84,8 +91,13 @@ h2 { margin: 0; font-size: 33px; font-weight: 500; letter-spacing: -.04em; line-
   .eyebrow { font-size: 8px; letter-spacing: .1em; margin-bottom: 26px; }
   h1 { font-size: clamp(43px, 10.5vw, 63px); }
   .intro { font-size: 14px; margin-top: 24px; }
-  .hero-art { width: 100%; max-width: 370px; height: 340px; margin: 0 auto; }
-  .assembly-mark { max-width: 225px; }
+  .hero-terminal { width: 100%; min-height: 340px; margin: 0 auto; }
+  .terminal-topline, .terminal-footer { font-size: 8px; padding: 12px; }
+  .terminal-grid { gap: 8px; padding: 10px; }
+  .terminal-panel { min-height: 80px; padding: 11px; }
+  .terminal-label { font-size: 8px; margin-bottom: 10px; }
+  .terminal-panel pre { font-size: 16px; letter-spacing: .12em; }
+  .terminal-bars { height: 84px; gap: 4px; }
   .project-grid { grid-template-columns: 1fr; gap: 24px; margin-top: 28px; }
   .project-section { padding-bottom: 34px; }
   h2 { font-size: 30px; }
