@@ -33,26 +33,21 @@
 
       <main id="main">
         <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="short-line" aria-hidden="true"></span> SITH ASSEMBLY / EIN NEUER ANFANG</p>
-            <h1 id="hero-title">Die nächste<br>Phase <em>beginnt.</em></h1>
-            <p class="intro">Aus einer Idee wird etwas Eigenes.<br>Hier entsteht die neue Welt von Sith Assembly.</p>
-            <a class="button" href="#projekt">Das Projekt entdecken <span aria-hidden="true">↗</span></a>
-            <p class="hero-note">Im Aufbau. Mit Raum für das, was kommt.</p>
-          </div>
-          <div class="hero-terminal" aria-label="Idle-Numerical-Terminal" role="img">
+          <div class="hero-terminal">
             <div class="terminal-window">
               <div class="terminal-topline">
                 <span>SITHASM://IDLE-NUMERICS</span>
+                <span><span class="terminal-state-dot" aria-hidden="true"></span> IDLE</span>
                 <span data-terminal-clock>00:00:00</span>
               </div>
               <div class="terminal-grid">
                 <div class="terminal-panel terminal-panel-wide">
-                  <span class="terminal-label">FFT STREAM</span>
-                  <div class="terminal-bars" data-terminal-bars>
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                  </div>
+                  <span class="terminal-label">WAVE FUNCTION</span>
+                  <svg class="terminal-wave" viewBox="0 0 720 190" role="img" aria-label="Animierte Wellenfunktion">
+                    <path class="wave-grid-line" d="M34 48H686M34 95H686M34 142H686"></path>
+                    <path class="wave-trace wave-shadow" data-wave-shadow d=""></path>
+                    <path class="wave-trace" data-wave-line d=""></path>
+                  </svg>
                 </div>
                 <div class="terminal-panel">
                   <span class="terminal-label">EIG</span>
@@ -68,12 +63,33 @@
 00 00 00
 00 00 00</pre>
                 </div>
+                <div class="terminal-panel terminal-controls">
+                  <label>
+                    <span>PHASE</span>
+                    <input data-terminal-control="phase" type="range" min="0" max="628" value="120" aria-label="Phase">
+                  </label>
+                  <label>
+                    <span>AMPLITUDE</span>
+                    <input data-terminal-control="amplitude" type="range" min="20" max="90" value="54" aria-label="Amplitude">
+                  </label>
+                  <label>
+                    <span>GAIN</span>
+                    <input data-terminal-control="gain" type="range" min="60" max="180" value="110" aria-label="Gain">
+                  </label>
+                </div>
               </div>
               <div class="terminal-footer">
                 <span data-terminal-status>NO INPUT / PASSIVE SAMPLE</span>
-                <span>SA-001</span>
+                <span data-terminal-readout>phase=1.20 amp=0.54 gain=1.10</span>
               </div>
             </div>
+          </div>
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="short-line" aria-hidden="true"></span> SITH ASSEMBLY / EIN NEUER ANFANG</p>
+            <h1 id="hero-title">Die nächste<br>Phase <em>beginnt.</em></h1>
+            <p class="intro">Aus einer Idee wird etwas Eigenes.<br>Hier entsteht die neue Welt von Sith Assembly.</p>
+            <a class="button" href="#projekt">Das Projekt entdecken <span aria-hidden="true">↗</span></a>
+            <p class="hero-note">Im Aufbau. Mit Raum für das, was kommt.</p>
           </div>
         </section>
 
