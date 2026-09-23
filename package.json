@@ -1,0 +1,15 @@
+{
+  "name": "sith-assembly-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Website for sith-assembly.com — IONOS Deploy Now and standard web hosting",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node scripts/preview.mjs site",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs dist",
+    "check": "node scripts/check.mjs",
+    "package": "powershell -NoProfile -File scripts/package.ps1"
+  }
+}

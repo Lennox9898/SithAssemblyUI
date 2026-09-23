@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Anmelden bei Sith Assembly.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#09090b">
+    <meta http-equiv="Content-Security-Policy" content="form-action 'none'">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/login.css">
+    <link rel="preload" href="/assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/login.js" defer></script>
+    <title>Anmelden — Sith Assembly</title>
+  </head>
+  <body class="login-page">
+    <a class="skip-link" href="#login-title">Zum Login springen</a>
+    <div class="login-backdrop" aria-hidden="true">
+      <div class="login-orbit login-orbit-outer"></div>
+      <div class="login-orbit login-orbit-inner"></div>
+      <img class="login-artwork" src="/assets/assembly-mark.svg" alt="" width="320" height="360">
+    </div>
+
+    <header class="login-topbar">
+      <a class="login-home" href="/">← Zur Startseite</a>
+      <span class="login-domain">SITH ASSEMBLY</span>
+    </header>
+
+    <main class="login-main">
+      <div class="login-panel">
+        <section class="login-card" aria-labelledby="login-title" data-figma-node="5845:1890">
+          <header class="login-header">
+            <a class="login-brand" href="/" aria-label="Sith Assembly Startseite">
+              <img src="/assets/login/logo.svg" width="28" height="28" alt="">
+              <span>SITH//ASSEMBLY</span>
+            </a>
+            <div class="login-greeting">
+              <h1 id="login-title">Willkommen zurück</h1>
+              <p>Bitte melde dich an, um fortzufahren.</p>
+            </div>
+          </header>
+
+          <!-- UI preview: no credential names, no transmission, no session storage. -->
+          <form class="login-form" id="login-form" method="post" aria-describedby="login-availability">
+            <div class="login-fields">
+              <div class="login-field">
+                <label for="login-email">E-Mail-Adresse</label>
+                <div class="login-input-wrap">
+                  <img src="/assets/login/mail.svg" width="16" height="16" alt="">
+                  <input id="login-email" type="email" placeholder="name@beispiel.de" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required>
+                </div>
+              </div>
+              <div class="login-field">
+                <div class="login-label-row">
+                  <label for="login-password">Passwort</label>
+                  <button class="login-text-button" type="button" data-login-action="forgot" disabled>Passwort vergessen?</button>
+                </div>
+                <div class="login-input-wrap login-password-wrap">
+                  <img src="/assets/login/lock.svg" width="16" height="16" alt="">
+                  <input id="login-password" type="password" placeholder="••••••••••••" autocomplete="current-password" required>
+                  <button class="login-password-toggle" id="password-toggle" type="button" aria-label="Passwort anzeigen" aria-pressed="false" aria-controls="login-password" disabled>
+                    <img src="/assets/login/eye.svg" width="16" height="16" alt="">
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="login-actions">
+              <button class="login-submit" type="submit" disabled>Anmelden</button>
+              <p class="login-register">Noch kein Konto? <button class="login-text-button" type="button" data-login-action="register" disabled>Jetzt registrieren</button></p>
+            </div>
+          </form>
+          <p class="login-feedback" id="login-feedback" role="status" aria-live="polite" hidden></p>
+        </section>
+        <p class="login-availability" id="login-availability">Die Anmeldung ist noch nicht freigeschaltet.</p>
+      </div>
+    </main>
+
+    <footer class="login-footer"><span>sith-assembly.com</span><a href="/">Zum Projekt</a></footer>
+  </body>
+</html>

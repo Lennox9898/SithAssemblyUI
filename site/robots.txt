@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# The starter pages use a noindex meta tag until the actual website is ready.
