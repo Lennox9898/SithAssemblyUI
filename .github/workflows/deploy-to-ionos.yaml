@@ -72,7 +72,9 @@ jobs:
         id: template
         with:
           deployment-id: ${{ matrix.deployment-id }}
-          data: "[${{ steps.deployment.outputs.template-variables }}, ${{ toJson(secrets) }}]"
+          # This website has no secret-backed runtime templates. Keep repository
+          # secrets scoped to the IONOS API/SSH steps that actually need them.
+          data: "[${{ steps.deployment.outputs.template-variables }}]"
           input-directory: deployment
           output-directory: deployment
           intermediate-data-file: deployment/.template-renderer-data
