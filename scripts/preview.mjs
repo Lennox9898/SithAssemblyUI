@@ -2,39 +2,56 @@ import http from 'node:http';
 import { readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.txt': 'text/plain; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
+import { contentTypes, isPublicPath, securityHeaders } from './policy.mjs';
 
 export async function createPreviewServer(directory) {
   const root = await realpath(directory);
-  return http.createServer(async (request, response) => {
+  const withinRoot = value => value === root || value.startsWith(root + path.sep);
+  const readPublicFile = async candidate => {
+    const resolved = await realpath(candidate);
+    const relative = path.relative(root, resolved).split(path.sep).join('/');
+    if (!withinRoot(resolved) || !isPublicPath(relative) || !(await stat(resolved)).isFile()) {
+      const error = new Error('Not a public file');
+      error.code = 'ENOENT';
+      throw error;
+    }
+    return { body: await readFile(resolved), type: contentTypes[path.extname(resolved).toLowerCase()] };
+  };
+  const server = http.createServer({ headersTimeout: 10_000, requestTimeout: 30_000, keepAliveTimeout: 5_000 }, async (request, response) => {
     const send = (status, body, type = 'text/plain; charset=utf-8') => {
-      response.writeHead(status, { 'Content-Type': type, 'Content-Length': Buffer.byteLength(body), 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' });
+      response.writeHead(status, { ...securityHeaders, 'Content-Type': type, 'Content-Length': Buffer.byteLength(body), 'Cache-Control': 'no-store' });
       response.end(request.method === 'HEAD' ? undefined : body);
     };
     try {
+      // A loopback listener alone does not reject DNS-rebinding Host names.
+      const host = request.headers.host || '';
+      const localHost = /^(?:localhost|127\.0\.0\.1|\[::1\])(?::([0-9]+))?$/i.exec(host);
+      if (!localHost || (localHost[1] && Number(localHost[1]) !== request.socket.localPort)) return send(403, 'Local preview only');
       if (!['GET', 'HEAD'].includes(request.method)) {
         response.setHeader('Allow', 'GET, HEAD');
         return send(405, 'Method not allowed');
       }
-      const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+      if (!request.url.startsWith('/') || request.url.startsWith('//')) return send(400, 'Bad request');
+      // Check before URL normalization can remove dot segments.
+      const pathname = decodeURIComponent(request.url.split('?')[0]);
       const segments = pathname.split('/');
-      if (pathname.includes('\\') || pathname.includes('\0') || segments.some(part => part.startsWith('.'))) {
+      if (/[\\\x00-\x1f\x7f:?#]/.test(pathname) || segments.some(part => part.startsWith('.') || /[. ]$/.test(part))) {
         return send(404, 'Not found');
       }
       let candidate = path.resolve(root, `.${pathname}`);
-      const withinRoot = value => value === root || value.startsWith(root + path.sep);
       if (!withinRoot(candidate)) return send(404, 'Not found');
       try {
         if ((await stat(candidate)).isDirectory()) candidate = path.join(candidate, 'index.html');
-        candidate = await realpath(candidate);
-        if (!withinRoot(candidate)) return send(404, 'Not found');
-        const body = await readFile(candidate);
-        return send(200, body, types[path.extname(candidate)] || 'application/octet-stream');
+        const file = await readPublicFile(candidate);
+        return send(200, file.body, file.type);
       } catch (error) {
         if (!['ENOENT', 'ENOTDIR', 'EISDIR'].includes(error.code)) throw error;
-        const body = await readFile(path.join(root, '404.html'));
-        return send(404, body, types['.html']);
+        try {
+          const file = await readPublicFile(path.join(root, '404.html'));
+          return send(404, file.body, file.type);
+        } catch {
+          return send(404, 'Not found');
+        }
       }
     } catch (error) {
       if (error instanceof URIError || error instanceof TypeError) return send(400, 'Bad request');
@@ -42,6 +59,9 @@ export async function createPreviewServer(directory) {
       return send(500, 'Preview error');
     }
   });
+  server.maxHeadersCount = 50;
+  server.maxRequestsPerSocket = 100;
+  return server;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

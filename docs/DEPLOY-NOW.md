@@ -1,6 +1,6 @@
 # IONOS Deploy Now / Starter
 
-Diese Anleitung nimmt an, dass mit dem vorhandenen Cloud-Starter **IONOS Deploy Now mit einem Starter-Projekt** gemeint ist. Falls dein Vertrag anders heißt, vor dem Verbinden die Produktbezeichnung prüfen. Es wurde kein IONOS-Konto geöffnet oder Tarif gebucht.
+Das bestehende **IONOS Deploy Now Starter-Projekt** ist bereits mit diesem Repository und `sith-assembly.com` verbunden. Die Einrichtungswerte sind hier für spätere Wartung dokumentiert.
 
 ## 1. Inhalt lokal fertigstellen
 
@@ -45,6 +45,8 @@ Die Werte im Assistenten prüfen bzw. eintragen:
 
 `npm run check` erzeugt `dist/` und prüft den Build; ein zusätzlicher `npm run build` ist nicht nötig. Der lokale Vorschau-Befehl ist kein Produktions-Startbefehl.
 
+Der aktuelle IONOS-Build führt anschließend `npm run check:apache` auf dem GitHub-Runner aus. Schlagen Serverkonfiguration oder Zugriffstests fehl, wird kein neues Deployment-Artefakt hochgeladen. Die automatische Veröffentlichung ist auf `main` begrenzt. Zusätzliche Staging-Branches müssen später gezielt freigegeben und geprüft werden.
+
 IONOS schreibt beim Setup die projektbezogenen GitHub-Actions-Dateien und Secrets. Diese absichtlich nicht von Hand mit Beispiel-IDs ersetzen. Der mitgelieferte `check-and-build.yml` ergänzt diese um einen unabhängigen Check und ein herunterladbares Webhosting-Artefakt; er selbst deployt nicht.
 
 Falls die erzeugte IONOS-Konfiguration nur `npm run build` verwendet, den Build-Befehl dort auf `npm run check` ändern, damit Fehler das Deployment stoppen. In Workflow v2 muss `DEPLOYMENT_FOLDER` auf `dist` bzw. `./dist` zeigen. Nicht `./` veröffentlichen: Das würde den gesamten Projektordner betreffen.
@@ -76,6 +78,8 @@ Erwartung: `200`, `200`, `404`. Anschließend die Domain im Browser öffnen. Fal
 ## Spätere Änderungen
 
 In `site/` bearbeiten, `npm run check` ausführen, committen und auf den verbundenen Branch pushen. Nach der Erstverbindung löst ein Push das automatische IONOS-Deployment aus. Den echten Build-/Deploy-Status in GitHub Actions und IONOS prüfen.
+
+Der Deploy-Workflow übergibt dem Template-Schritt keine pauschale Sammlung aller Repository-Secrets. API-Schlüssel und SSH-Zugang werden nur den Schritten gegeben, die sie benötigen. Deploy-IDs werden vor Verwendung validiert; die URL-Ersetzung erfolgt als Zeichenkettenoperation ohne Shell-Auswertung. Details und Grenzen stehen in `docs/HARDENING.md`.
 
 ## Offizielle Quellen
 

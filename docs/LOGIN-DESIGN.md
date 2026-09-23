@@ -24,9 +24,10 @@ Dies ist die vorbereitete Login-Oberfläche, keine Benutzerverwaltung:
 - Anmeldung, Registrierung und Passwort-Hilfe zeigen ihren tatsächlichen, noch nicht freigeschalteten Stand an.
 - Kein Netzwerkversand von Formulardaten, keine Tokens, keine Sessions und keine Speicherung in Cookies oder Local Storage.
 - Formularelemente haben im Entwurf keine `name`-Attribute. Eine zusätzliche Content Security Policy blockiert Formularübertragung auch bei fehlendem JavaScript. Die Buttons bleiben ohne JavaScript deaktiviert.
-- Beim Betätigen von „Anmelden“ wird das Passwort wieder geleert. Es wird kein erfolgreicher Login vorgetäuscht.
+- Vor der Eingabe ist sichtbar, dass die Anmeldung noch vorbereitet wird. Autofill wird über `autocomplete="off"` abgewählt; Passwortmanager können diesen Hinweis ignorieren.
+- Beim Betätigen von „Anmelden“, beim Verlassen und beim Wiederherstellen der Seite werden E-Mail und Passwort geleert und das Passwortfeld wieder verborgen. Es wird kein erfolgreicher Login vorgetäuscht.
 
-Eine echte Anmeldung wird später mit einem ausgewählten Authentifizierungsdienst oder Backend verbunden. Dann muss die Vorschau-Logik in `site/assets/login.js` ersetzt und die `form-action`-Policy bewusst angepasst werden. Ein rein statischer IONOS-Upload kann selbst keine Benutzer prüfen oder geschützte Inhalte absichern.
+Eine echte Anmeldung wird später mit einem ausgewählten Authentifizierungsdienst oder Backend verbunden. Dann müssen die Vorschau-Logik in `site/assets/login.js`, die `form-action`- und `connect-src`-Policies sowie die HTTP-Methodenfreigabe bewusst angepasst werden. Eine Browser-Oberfläche oder ein statischer Upload kann selbst keine Benutzer prüfen oder geschützte Inhalte absichern.
 
 ## Bearbeiten und ausliefern
 

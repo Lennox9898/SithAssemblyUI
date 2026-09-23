@@ -1,6 +1,7 @@
 import { cp, lstat, mkdir, readdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isPublicPath } from './policy.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const sourceRoot = path.join(projectRoot, 'site');
@@ -18,17 +19,21 @@ export async function listFiles(directory, prefix = '') {
   return files.sort();
 }
 
-export async function build() {
-  const files = await listFiles(sourceRoot);
+export async function validateContent(directory) {
+  const source = await lstat(directory);
+  if (!source.isDirectory() || source.isSymbolicLink()) throw new Error('site must be a normal directory');
+  const files = await listFiles(directory);
   for (const required of ['index.html', '404.html', '.htaccess', 'robots.txt']) {
     if (!files.includes(required)) throw new Error(`Missing site/${required}`);
   }
   for (const file of files) {
-    if (file.split('/').some(part => part.startsWith('.') && part !== '.htaccess')) {
-      throw new Error(`Hidden files must not be deployed: ${file}`);
-    }
-    if (/\.(?:pem|key|log|sqlite|db|ps1|cmd)$/i.test(file)) throw new Error(`Not website content: ${file}`);
+    if (!isPublicPath(file, { allowConfig: true })) throw new Error(`Not public website content: ${file}`);
   }
+  return files;
+}
+
+export async function build() {
+  const files = await validateContent(sourceRoot);
 
   // Only the fixed, generated dist directory inside this project can be removed.
   if (path.relative(projectRoot, outputRoot) !== 'dist') throw new Error('Unsafe output path');

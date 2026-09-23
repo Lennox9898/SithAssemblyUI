@@ -73,6 +73,8 @@
 .login-footer { font-size: 11px; padding-top: 18px; padding-bottom: 22px; }
 
 @media (max-width: 600px) {
+  /* Avoid automatic field zoom on mobile Safari. */
+  .login-input-wrap input { font-size: 16px; }
   .login-topbar { padding: 22px 20px; }
   .login-domain { font-size: 8px; letter-spacing: .1em; }
   .login-main { padding: 24px 20px; }

@@ -8,13 +8,22 @@ function showFeedback(message) {
   feedback.hidden = false;
 }
 
-// This design preview has no authentication service. Never send or persist credentials.
-form.addEventListener('submit', event => {
-  event.preventDefault();
+function clearCredentials() {
+  form.reset();
   password.value = '';
   password.type = 'password';
   passwordToggle.setAttribute('aria-pressed', 'false');
   passwordToggle.setAttribute('aria-label', 'Passwort anzeigen');
+}
+
+// Clear values before navigation and after restoration from the back/forward cache.
+window.addEventListener('pagehide', clearCredentials);
+window.addEventListener('pageshow', clearCredentials);
+
+// This design preview has no authentication service. Never send or persist credentials.
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  clearCredentials();
   showFeedback('Die Anmeldung ist noch nicht freigeschaltet. Bitte versuche es später erneut.');
 });
 

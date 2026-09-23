@@ -12,6 +12,12 @@ on:
       branch-id:
         required: true
         type: string
+    secrets:
+      IONOS_API_KEY:
+        required: true
+
+permissions:
+  contents: read
 
 env:
   DEPLOYMENT_FOLDER: dist
@@ -21,14 +27,15 @@ jobs:
   build-project:
     name: build SithAssemblyUI
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          submodules: 'recursive'
+          persist-credentials: false
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: v22.x
 
@@ -39,10 +46,11 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npm run check
+          npm run check:apache
 
 # Please do not touch the following action
       - name: Store deployment content
-        uses: ionos-deploy-now/artifact-action@v1
+        uses: ionos-deploy-now/artifact-action@184a369b679287c06ff3d4392cf57bf0fd32656e # v1
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-eu.ionos.space

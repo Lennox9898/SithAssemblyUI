@@ -36,19 +36,19 @@
               <span>SITH//ASSEMBLY</span>
             </a>
             <div class="login-greeting">
-              <h1 id="login-title">Willkommen zurück</h1>
-              <p>Bitte melde dich an, um fortzufahren.</p>
+              <h1 id="login-title" tabindex="-1">Willkommen zurück</h1>
+              <p>Die Anmeldung wird vorbereitet. Bitte noch keine echten Zugangsdaten eingeben.</p>
             </div>
           </header>
 
           <!-- UI preview: no credential names, no transmission, no session storage. -->
-          <form class="login-form" id="login-form" method="post" aria-describedby="login-availability">
+          <form class="login-form" id="login-form" method="post" autocomplete="off" aria-describedby="login-availability">
             <div class="login-fields">
               <div class="login-field">
                 <label for="login-email">E-Mail-Adresse</label>
                 <div class="login-input-wrap">
                   <img src="/assets/login/mail.svg" width="16" height="16" alt="">
-                  <input id="login-email" type="email" placeholder="name@beispiel.de" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required>
+                  <input id="login-email" type="email" placeholder="name@beispiel.de" autocomplete="off" inputmode="email" autocapitalize="none" spellcheck="false" required>
                 </div>
               </div>
               <div class="login-field">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="login-input-wrap login-password-wrap">
                   <img src="/assets/login/lock.svg" width="16" height="16" alt="">
-                  <input id="login-password" type="password" placeholder="••••••••••••" autocomplete="current-password" required>
+                  <input id="login-password" type="password" placeholder="••••••••••••" autocomplete="off" required>
                   <button class="login-password-toggle" id="password-toggle" type="button" aria-label="Passwort anzeigen" aria-pressed="false" aria-controls="login-password" disabled>
                     <img src="/assets/login/eye.svg" width="16" height="16" alt="">
                   </button>

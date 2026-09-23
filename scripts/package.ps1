@@ -5,7 +5,7 @@ $releaseDirectory = Join-Path $projectDirectory 'releases'
 
 Push-Location -LiteralPath $projectDirectory
 try {
-    & node (Join-Path $PSScriptRoot 'check.mjs')
+    & npm.cmd run check
     if ($LASTEXITCODE -ne 0) { throw 'Build or checks failed; no archive created.' }
     New-Item -ItemType Directory -Path $releaseDirectory -Force | Out-Null
     Add-Type -AssemblyName System.IO.Compression
