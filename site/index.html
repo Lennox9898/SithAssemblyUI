@@ -14,6 +14,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="stylesheet" href="/assets/style.css">
     <script src="/assets/terminal.js" defer></script>
+    <script src="/assets/sithwatcher.js" defer></script>
     <title>Sith Assembly — Die nächste Phase beginnt.</title>
   </head>
   <body>
@@ -25,7 +26,7 @@
           <span>SITH<span class="brand-light">ASSEMBLY</span></span>
         </a>
         <nav aria-label="Hauptnavigation">
-          <a href="#projekt">Das Projekt</a>
+          <a href="#sithwatcher">SithWatcher</a>
           <a href="#status">Status <span class="status-dot" aria-hidden="true"></span></a>
           <a href="/login/">Anmelden</a>
         </nav>
@@ -99,9 +100,35 @@
             <h2 id="project-title">Ein Anfang.<br>Viele Möglichkeiten.</h2>
             <div class="project-copy">
               <p>Sith Assembly bekommt ein neues Zuhause. Diese Seite ist der erste Schritt — das eigentliche Projekt wächst von hier aus weiter.</p>
-              <p>Mehr Einblicke, Inhalte und Funktionen folgen, sobald sie bereit sind.</p>
+              <p>Mit SithWatcher wird jetzt das erste öffentliche Projekt testweise angebunden.</p>
             </div>
           </div>
+
+          <article class="watcher-card" id="sithwatcher" aria-labelledby="watcher-title" data-sithwatcher>
+            <div class="watcher-copy">
+              <p class="watcher-kicker"><span class="status-dot" aria-hidden="true"></span> SITH ASSEMBLY / LOCAL INTELLIGENCE</p>
+              <h3 id="watcher-title">Sith<span>Watcher</span></h3>
+              <p class="watcher-lead">Spuren ordnen. Zusammenhänge sichtbar machen. Entscheidungen beim Menschen lassen.</p>
+              <p class="watcher-description">Die lokale Analyse-Workbench aus dem öffentlichen GitHub-Repository arbeitet mit nachvollziehbaren Quellen, Zeitlinien und Beziehungen. Fallakten und Modellresultate bleiben von dieser Website getrennt.</p>
+              <div class="watcher-actions">
+                <a class="watcher-link" href="https://github.com/Lennox9898/SithAssembly-SithInsta" target="_blank" rel="noreferrer">Repository öffnen <span aria-hidden="true">↗</span></a>
+                <button class="watcher-test" type="button" data-sithwatcher-test>GitHub-Verbindung testen</button>
+              </div>
+            </div>
+            <div class="watcher-console" aria-label="SithWatcher Verbindungsstatus">
+              <div class="watcher-console-head">
+                <span>SITHWATCHER://BRIDGE</span>
+                <span data-sithwatcher-indicator><span class="watcher-state-dot" aria-hidden="true"></span> READY</span>
+              </div>
+              <dl>
+                <div><dt>REPOSITORY</dt><dd>Lennox9898/SithAssembly-SithInsta</dd></div>
+                <div><dt>DEFAULT BRANCH</dt><dd data-sithwatcher-branch>main</dd></div>
+                <div><dt>PUBLIC BRIDGE</dt><dd data-sithwatcher-bridge>read-only / prepared</dd></div>
+                <div><dt>CASE DATA</dt><dd>disconnected</dd></div>
+              </dl>
+              <p class="watcher-result" data-sithwatcher-result role="status" aria-live="polite">Bereit für einen öffentlichen Repository-Test.</p>
+            </div>
+          </article>
         </section>
 
         <section class="status-section" id="status" aria-labelledby="status-title">

@@ -27,5 +27,5 @@ export const securityHeaders = {
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'X-Frame-Options': 'DENY',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
-  'Content-Security-Policy': "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; connect-src 'none'; img-src 'self'; font-src 'self'; style-src 'self'; script-src 'self'; manifest-src 'self'",
+  'Content-Security-Policy': "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; connect-src https://api.github.com; img-src 'self'; font-src 'self'; style-src 'self'; script-src 'self'; manifest-src 'self'",
 };

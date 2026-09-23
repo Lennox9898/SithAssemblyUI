@@ -23,7 +23,7 @@ ErrorDocument 404 /404.html
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "DENY"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-  Header always set Content-Security-Policy "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; connect-src 'none'; img-src 'self'; font-src 'self'; style-src 'self'; script-src 'self'; manifest-src 'self'"
+  Header always set Content-Security-Policy "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; connect-src https://api.github.com; img-src 'self'; font-src 'self'; style-src 'self'; script-src 'self'; manifest-src 'self'"
   # Applies only to this hostname; subdomains keep their own TLS policy.
   Header always set Strict-Transport-Security "max-age=31536000"
   # Apache also creates an Allow header for 405 responses in its normal table.
